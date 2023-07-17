@@ -1,0 +1,47 @@
+.headerContainer {
+    display: flex;
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    align-items: center;
+}
+
+.calendarH1 {
+    margin-right: 10px;
+    font-size: 1.25rem; /* 20px */
+    line-height: 1.75rem; /* 28px */
+    color: gray;
+    font-weight: 700;
+}
+
+.todayBtn {
+    border: 1px;
+    border-radius: 0.25rem;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-right: 24px;
+}
+
+.arrowBtn {
+    cursor: pointer;
+    color: gray;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+.arrowLeft {
+    border-bottom: solid 3px gray;
+    border-left: solid 3px gray;
+    width: 12px;
+    height: 12px;
+    transform: rotate(45deg);
+}
+.arrowRight {
+    border-top: solid 3px gray;
+    border-right: solid 3px gray;
+    width: 12px;
+    height: 12px;
+    transform: rotate(45deg);
+}

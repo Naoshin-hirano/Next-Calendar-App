@@ -4,13 +4,17 @@ import { getFunsMonth } from "@/util";
 import { useState } from "react";
 
 export default function Page1() {
-    const [currentMonth, setCurrentMonth] = useState(getFunsMonth(new Date()));
+    const [targetDate, setTargetDate] = useState<Date>(new Date());
+    let calendar = getFunsMonth(targetDate);
     return (
         <>
             <div>
-                <CalendarHeader />
+                <CalendarHeader
+                    setTargetDate={setTargetDate}
+                    targetDate={targetDate}
+                />
                 <div>
-                    <Month month={currentMonth}></Month>
+                    <Month month={calendar}></Month>
                 </div>
             </div>
         </>

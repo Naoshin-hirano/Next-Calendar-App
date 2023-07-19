@@ -9,8 +9,16 @@
 
 .calendarH1 {
     margin-right: 10px;
-    font-size: 1.25rem; /* 20px */
-    line-height: 1.75rem; /* 28px */
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    color: gray;
+    font-weight: 700;
+}
+.calendarH2 {
+    margin-left: 15px;
+    margin-right: 10px;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
     color: gray;
     font-weight: 700;
 }

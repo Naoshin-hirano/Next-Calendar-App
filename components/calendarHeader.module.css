@@ -53,3 +53,12 @@
     height: 12px;
     transform: rotate(45deg);
 }
+.displaySwitch {
+    margin-left: auto;
+    width: 74px;
+}
+.displaySwitch select {
+    height: 50px;
+    width: 78px;
+    font-size: x-large;
+}

@@ -5,6 +5,9 @@
     padding: 6rem;
     min-height: 100vh;
 }
+.container {
+    margin: 0px 10px 0px 10px;
+}
 
 .description {
     display: inherit;

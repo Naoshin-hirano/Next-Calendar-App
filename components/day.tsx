@@ -7,9 +7,10 @@ import getDay from "date-fns/getDay";
 export const Day = (props: {
     day: Date;
     rowIdx: number;
-    addCalendarPlan: (day: Date) => void;
+    colIdx: number;
+    addCalendarPlan: (day: Date, rowIdx: number, colIdx: number) => void;
 }) => {
-    const { day, rowIdx, addCalendarPlan } = props;
+    const { day, rowIdx, colIdx, addCalendarPlan } = props;
     // 今日の日付を色付けする
     const getCurrentDayClass = () => {
         return `${
@@ -20,7 +21,10 @@ export const Day = (props: {
     };
 
     return (
-        <div className={styles.dayBorder} onClick={() => addCalendarPlan(day)}>
+        <div
+            className={styles.dayBorder}
+            onClick={() => addCalendarPlan(day, rowIdx, colIdx)}
+        >
             <header className={styles.dayHeader}>
                 {rowIdx === 0 && (
                     <p className={styles.dayFormat}>

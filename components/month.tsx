@@ -4,7 +4,7 @@ import styles from "./month.module.css";
 
 export const Month = (props: {
     month: Date[][];
-    addCalendarPlan: (day: Date) => void;
+    addCalendarPlan: (day: Date, rowIdx: number, colIdx: number) => void;
 }) => {
     const { month, addCalendarPlan } = props;
     return (
@@ -16,6 +16,7 @@ export const Month = (props: {
                             day={day}
                             key={idx}
                             rowIdx={i}
+                            colIdx={idx}
                             addCalendarPlan={addCalendarPlan}
                         />
                     ))}

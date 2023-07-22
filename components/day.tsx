@@ -4,8 +4,12 @@ import format from "date-fns/format";
 import getDate from "date-fns/getDate";
 import getDay from "date-fns/getDay";
 
-export const Day = (props: any) => {
-    const { day, rowIdx } = props;
+export const Day = (props: {
+    day: Date;
+    rowIdx: number;
+    addCalendarPlan: (day: Date) => void;
+}) => {
+    const { day, rowIdx, addCalendarPlan } = props;
     // 今日の日付を色付けする
     const getCurrentDayClass = () => {
         return `${
@@ -16,7 +20,7 @@ export const Day = (props: any) => {
     };
 
     return (
-        <div className={styles.dayBorder}>
+        <div className={styles.dayBorder} onClick={() => addCalendarPlan(day)}>
             <header className={styles.dayHeader}>
                 {rowIdx === 0 && (
                     <p className={styles.dayFormat}>

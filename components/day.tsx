@@ -8,9 +8,9 @@ export const Day = (props: {
     day: Date;
     rowIdx: number;
     colIdx: number;
-    addCalendarPlan: (day: Date, rowIdx: number, colIdx: number) => void;
+    setCalendarPlanModal: (day: Date, rowIdx: number, colIdx: number) => void;
 }) => {
-    const { day, rowIdx, colIdx, addCalendarPlan } = props;
+    const { day, rowIdx, colIdx, setCalendarPlanModal } = props;
     // 今日の日付を色付けする
     const getCurrentDayClass = () => {
         return `${
@@ -23,7 +23,7 @@ export const Day = (props: {
     return (
         <div
             className={styles.dayBorder}
-            onClick={() => addCalendarPlan(day, rowIdx, colIdx)}
+            onClick={() => setCalendarPlanModal(day, rowIdx, colIdx)}
         >
             <header className={styles.dayHeader}>
                 {rowIdx === 0 && (
@@ -31,9 +31,12 @@ export const Day = (props: {
                         {getEnglishWeek(getDay(day))}
                     </p>
                 )}
-                <p className={`${styles.dayText} ${getCurrentDayClass()}`}>
+                <div className={`${styles.dayText} ${getCurrentDayClass()}`}>
                     {getDate(day)}
-                </p>
+                </div>
+                <div className={styles.schedulerContainer}>
+                    <div className={styles.scheduler}>隅田川花火大会</div>
+                </div>
             </header>
         </div>
     );

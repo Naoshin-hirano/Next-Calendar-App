@@ -4,9 +4,9 @@ import styles from "./month.module.css";
 
 export const Month = (props: {
     month: Date[][];
-    addCalendarPlan: (day: Date, rowIdx: number, colIdx: number) => void;
+    setCalendarPlanModal: (day: Date, rowIdx: number, colIdx: number) => void;
 }) => {
-    const { month, addCalendarPlan } = props;
+    const { month, setCalendarPlanModal } = props;
     return (
         <div className={styles.monthBorder}>
             {month.map((row: Date[], i: number) => (
@@ -17,7 +17,7 @@ export const Month = (props: {
                             key={idx}
                             rowIdx={i}
                             colIdx={idx}
-                            addCalendarPlan={addCalendarPlan}
+                            setCalendarPlanModal={setCalendarPlanModal}
                         />
                     ))}
                 </React.Fragment>

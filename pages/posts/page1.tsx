@@ -11,18 +11,29 @@ export default function Page1() {
     const [switchDisplay, setSwichDisplay] = useState<"月" | "週">("月");
     const [isModal, setIsModal] = useState<boolean>(false);
     const [clickedDate, setClickedDate] = useState<Date>(new Date());
+    const [planTitle, setPlanTitle] = useState("");
     let monthCalendar = getFunsMonth(targetDate);
     let weekCalendar = getFuncWeek(targetDate);
 
-    const addCalendarPlan = (day: Date, rowIdx: number, colIdx: number) => {
+    const setCalendarPlanModal = (
+        day: Date,
+        rowIdx: number,
+        colIdx: number
+    ) => {
         console.log("planを追加", day);
         console.log("newDate", new Date());
         console.log("row", rowIdx);
         console.log("col", colIdx);
+
         setIsModal(true);
-        console.log("クリックした日付", monthCalendar[rowIdx][colIdx]);
         setClickedDate(monthCalendar[rowIdx][colIdx]);
     };
+
+    const addCalendarPlan = () => {
+        setPlanTitle("");
+        setIsModal(false);
+    };
+
     return (
         <div className={styles.container}>
             <CalendarHeader
@@ -34,7 +45,7 @@ export default function Page1() {
             {switchDisplay === "月" ? (
                 <Month
                     month={monthCalendar}
-                    addCalendarPlan={addCalendarPlan}
+                    setCalendarPlanModal={setCalendarPlanModal}
                 />
             ) : (
                 <Week week={weekCalendar} />
@@ -43,6 +54,9 @@ export default function Page1() {
                 isModal={isModal}
                 setIsModal={setIsModal}
                 clickedDate={clickedDate}
+                addCalendarPlan={addCalendarPlan}
+                planTitle={planTitle}
+                setPlanTitle={setPlanTitle}
             />
         </div>
     );

@@ -7,27 +7,40 @@
 .dayHeader {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    /* align-items: center; */
+    height: 142px;
 }
 
 .dayText {
     text-align: center;
     font-size: 0.875rem;
     line-height: 1.25rem;
-    padding: 1px;
+    /* padding: 1px; */
     margin-top: 1px;
-    margin-bottom: 90px;
+    /* margin-bottom: 90px; */
+    margin-bottom: 0px;
 }
 
 .todayMark {
+    text-align: center;
     background-color: blue;
     color: white;
-    width: 25px;
     border-radius: 100%;
+    height: 20px;
+    width: 30px;
+    margin-left: 39%;
 }
 
 .dayFormat {
+    text-align: center;
     font-size: 0.875rem; /* 14px */
     line-height: 1.25rem; /* 20px */
     margin-top: 1px;
+    margin-bottom: 3px;
+}
+.schedulerContainer {
+    text-align: left;
+}
+.scheduler {
+    background-color: aquamarine;
 }

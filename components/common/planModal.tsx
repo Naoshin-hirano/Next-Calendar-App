@@ -6,9 +6,9 @@ type PLAN_MODAL = {
     isModal: boolean;
     setIsModal: Dispatch<SetStateAction<boolean>>;
     clickedDate: Date;
-    addCalendarPlan: any;
+    addCalendarPlan: (clickedDate: Date) => void;
     planTitle: string;
-    setPlanTitle: any;
+    setPlanTitle: Dispatch<SetStateAction<string>>;
 };
 
 export const PlanModal = (props: PLAN_MODAL) => {
@@ -38,7 +38,11 @@ export const PlanModal = (props: PLAN_MODAL) => {
                             日付: {format(clickedDate, "y年M月d日")}
                         </div>
                         <div className={styles.button}>
-                            <button onClick={addCalendarPlan}>保存</button>
+                            <button
+                                onClick={() => addCalendarPlan(clickedDate)}
+                            >
+                                保存
+                            </button>
                             <button
                                 onClick={() => {
                                     setIsModal(false);

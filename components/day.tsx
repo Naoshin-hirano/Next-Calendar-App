@@ -3,14 +3,28 @@ import styles from "./day.module.css";
 import format from "date-fns/format";
 import getDate from "date-fns/getDate";
 import getDay from "date-fns/getDay";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { MY_SCHEDULE } from "@/pages/posts/page1";
 
 export const Day = (props: {
     day: Date;
     rowIdx: number;
     colIdx: number;
-    setCalendarPlanModal: (day: Date, rowIdx: number, colIdx: number) => void;
+    setCalendarPlanModal: (rowIdx: number, colIdx: number) => void;
+    mySchedules: MY_SCHEDULE[];
+    setMySchedules: Dispatch<SetStateAction<MY_SCHEDULE[]>>;
+    addCalendarPlan: (clickedDate: Date) => void;
 }) => {
-    const { day, rowIdx, colIdx, setCalendarPlanModal } = props;
+    const [scheduleList, setScheduleList] = useState<MY_SCHEDULE[]>([]);
+    const {
+        day,
+        rowIdx,
+        colIdx,
+        setCalendarPlanModal,
+        mySchedules,
+        addCalendarPlan,
+    } = props;
+    console.log("Dayのレンダー");
     // 今日の日付を色付けする
     const getCurrentDayClass = () => {
         return `${
@@ -20,10 +34,18 @@ export const Day = (props: {
         }`;
     };
 
+    useEffect(() => {
+        const events = mySchedules.filter(
+            (evt) =>
+                format(evt.date, "yyyy/MM/dd") === format(day, "yyyy/MM/dd")
+        );
+        setScheduleList(events);
+    }, [addCalendarPlan]);
+
     return (
         <div
             className={styles.dayBorder}
-            onClick={() => setCalendarPlanModal(day, rowIdx, colIdx)}
+            onClick={() => setCalendarPlanModal(rowIdx, colIdx)}
         >
             <header className={styles.dayHeader}>
                 {rowIdx === 0 && (
@@ -35,7 +57,12 @@ export const Day = (props: {
                     {getDate(day)}
                 </div>
                 <div className={styles.schedulerContainer}>
-                    <div className={styles.scheduler}>隅田川花火大会</div>
+                    {scheduleList &&
+                        scheduleList.map((schedule, index) => (
+                            <div key={index} className={styles.scheduler}>
+                                {schedule.title}
+                            </div>
+                        ))}
                 </div>
             </header>
         </div>

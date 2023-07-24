@@ -6,30 +6,38 @@ import { useState } from "react";
 import { Week } from "@/components/week";
 import { PlanModal } from "@/components/common/planModal";
 
+export type MY_SCHEDULE = {
+    id: Date;
+    title: string;
+    date: Date;
+};
+
 export default function Page1() {
     const [targetDate, setTargetDate] = useState<Date>(new Date());
     const [switchDisplay, setSwichDisplay] = useState<"月" | "週">("月");
     const [isModal, setIsModal] = useState<boolean>(false);
     const [clickedDate, setClickedDate] = useState<Date>(new Date());
     const [planTitle, setPlanTitle] = useState("");
+    const [mySchedules, setMySchedules] = useState<MY_SCHEDULE[]>([]);
     let monthCalendar = getFunsMonth(targetDate);
     let weekCalendar = getFuncWeek(targetDate);
 
-    const setCalendarPlanModal = (
-        day: Date,
-        rowIdx: number,
-        colIdx: number
-    ) => {
-        console.log("planを追加", day);
-        console.log("newDate", new Date());
-        console.log("row", rowIdx);
-        console.log("col", colIdx);
-
+    const setCalendarPlanModal = (rowIdx: number, colIdx: number) => {
         setIsModal(true);
         setClickedDate(monthCalendar[rowIdx][colIdx]);
     };
 
-    const addCalendarPlan = () => {
+    const addCalendarPlan = (clickedDate: Date) => {
+        const newSchedule = [
+            ...mySchedules,
+            {
+                id: new Date(),
+                title: planTitle,
+                date: clickedDate,
+            },
+        ];
+        console.log("newSchedule", newSchedule);
+        setMySchedules(newSchedule);
         setPlanTitle("");
         setIsModal(false);
     };
@@ -46,6 +54,9 @@ export default function Page1() {
                 <Month
                     month={monthCalendar}
                     setCalendarPlanModal={setCalendarPlanModal}
+                    mySchedules={mySchedules}
+                    setMySchedules={setMySchedules}
+                    addCalendarPlan={addCalendarPlan}
                 />
             ) : (
                 <Week week={weekCalendar} />

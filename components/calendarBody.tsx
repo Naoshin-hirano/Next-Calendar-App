@@ -1,15 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Day } from "./day";
 import styles from "./month.module.css";
 import { MY_SCHEDULE } from "@/pages/calendar";
 import { Week } from "./week";
+import GlobalContext from "@/context/GlobalContext";
 
 export const CalendarBody = (props: {
     monthCalendar: Date[][];
     setCalendarPlanModal: (colIdx: number, rowIdx?: number) => void;
     mySchedules: MY_SCHEDULE[];
     addCalendarPlan: (clickedDate: Date) => void;
-    switchDisplay: "月" | "週";
     weekCalendar: Date[];
 }) => {
     const {
@@ -18,8 +18,8 @@ export const CalendarBody = (props: {
         setCalendarPlanModal,
         mySchedules,
         addCalendarPlan,
-        switchDisplay,
     } = props;
+    const { switchDisplay } = useContext(GlobalContext);
     return (
         <>
             {switchDisplay === "月" && (

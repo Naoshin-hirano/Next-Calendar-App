@@ -3,21 +3,19 @@ import styles from "./calendarHeader.module.css";
 import addMonths from "date-fns/addMonths";
 import format from "date-fns/format";
 import subMonths from "date-fns/subMonths";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useContext } from "react";
+import GlobalContext from "@/context/GlobalContext";
 
 type CALENDER_HEADER = {
     setTargetDate: Dispatch<SetStateAction<Date>>;
     targetDate: Date;
-    switchDisplay: "月" | "週";
-    setSwitchDisplay: Dispatch<SetStateAction<"月" | "週">>;
 };
 
 export const CalendarHeader = ({
     setTargetDate,
     targetDate,
-    switchDisplay,
-    setSwitchDisplay,
 }: CALENDER_HEADER) => {
+    const { switchDisplay, setSwitchDisplay } = useContext(GlobalContext);
     const dateArray: ("月" | "週")[] = ["月", "週"];
     const handleChange = (e: any) => {
         setSwitchDisplay(dateArray[e.target.value]);

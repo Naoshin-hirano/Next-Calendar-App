@@ -14,7 +14,6 @@ export type MY_SCHEDULE = {
 
 export default function Page1() {
     const [targetDate, setTargetDate] = useState<Date>(new Date());
-    const [switchDisplay, setSwitchDisplay] = useState<"月" | "週">("月");
     const [isModal, setIsModal] = useState<boolean>(false);
     const [clickedDate, setClickedDate] = useState<Date>(new Date());
     const [planTitle, setPlanTitle] = useState("");
@@ -53,8 +52,6 @@ export default function Page1() {
                 <CalendarHeader
                     setTargetDate={setTargetDate}
                     targetDate={targetDate}
-                    setSwitchDisplay={setSwitchDisplay}
-                    switchDisplay={switchDisplay}
                 />
                 <CalendarBody
                     monthCalendar={monthCalendar}
@@ -62,7 +59,6 @@ export default function Page1() {
                     setCalendarPlanModal={setCalendarPlanModal}
                     mySchedules={mySchedules}
                     addCalendarPlan={addCalendarPlan}
-                    switchDisplay={switchDisplay}
                 />
                 <PlanModal
                     isModal={isModal}

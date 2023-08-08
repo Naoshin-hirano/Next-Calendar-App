@@ -1,28 +1,21 @@
 import { getEnglishWeek } from "@/util";
-import styles from "./day.module.css";
+import styles from "./weekDay.module.css";
 import format from "date-fns/format";
 import getDate from "date-fns/getDate";
 import getDay from "date-fns/getDay";
 import { useEffect, useState } from "react";
 import { MY_SCHEDULE } from "@/pages/calendar";
 
-export const Day = (props: {
+export const WeekDay = (props: {
     day: Date;
-    rowIdx: number;
     colIdx: number;
     setCalendarPlanModal: (colIdx: number, rowIdx?: number) => void;
     mySchedules: MY_SCHEDULE[];
     addCalendarPlan: (clickedDate: Date) => void;
 }) => {
     const [scheduleList, setScheduleList] = useState<MY_SCHEDULE[]>([]);
-    const {
-        day,
-        rowIdx,
-        colIdx,
-        setCalendarPlanModal,
-        mySchedules,
-        addCalendarPlan,
-    } = props;
+    const { day, colIdx, setCalendarPlanModal, mySchedules, addCalendarPlan } =
+        props;
     // 今日の日付を色付けする
     const getCurrentDayClass = () => {
         return `${
@@ -42,14 +35,10 @@ export const Day = (props: {
 
     return (
         <div
+            onClick={() => setCalendarPlanModal(colIdx)}
             className={styles.dayBorder}
-            onClick={() => setCalendarPlanModal(colIdx, rowIdx)}
         >
-            {rowIdx === 0 && (
-                <p className={styles.dayFormat}>
-                    {getEnglishWeek(getDay(day))}
-                </p>
-            )}
+            <p className={styles.dayFormat}>{getEnglishWeek(getDay(day))}</p>
             <div className={`${styles.dayText} ${getCurrentDayClass()}`}>
                 {getDate(day)}
             </div>

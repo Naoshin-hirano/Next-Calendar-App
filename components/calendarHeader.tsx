@@ -8,19 +8,19 @@ import { Dispatch, SetStateAction } from "react";
 type CALENDER_HEADER = {
     setTargetDate: Dispatch<SetStateAction<Date>>;
     targetDate: Date;
-    setSwichDisplay: Dispatch<SetStateAction<"月" | "週">>;
     switchDisplay: "月" | "週";
+    setSwitchDisplay: Dispatch<SetStateAction<"月" | "週">>;
 };
 
 export const CalendarHeader = ({
     setTargetDate,
     targetDate,
-    setSwichDisplay,
     switchDisplay,
+    setSwitchDisplay,
 }: CALENDER_HEADER) => {
     const dateArray: ("月" | "週")[] = ["月", "週"];
     const handleChange = (e: any) => {
-        setSwichDisplay(dateArray[e.target.value]);
+        setSwitchDisplay(dateArray[e.target.value]);
     };
     return (
         <header className={styles.headerContainer}>

@@ -1,13 +1,5 @@
 .dayBorder {
-    display: flex;
-    flex-direction: column;
     border: 1px solid gray;
-}
-
-.dayHeader {
-    display: flex;
-    flex-direction: column;
-    /* align-items: center; */
     height: 142px;
 }
 
@@ -15,26 +7,22 @@
     text-align: center;
     font-size: 0.875rem;
     line-height: 1.25rem;
-    /* padding: 1px; */
-    margin-top: 1px;
-    /* margin-bottom: 90px; */
-    margin-bottom: 0px;
+    margin: 1px 0px;
 }
 
 .todayMark {
     text-align: center;
     background-color: blue;
     color: white;
-    border-radius: 100%;
-    height: 20px;
+    border-radius: 50%;
     width: 30px;
-    margin-left: 39%;
+    margin: 1px auto 0px auto;
 }
 
 .dayFormat {
     text-align: center;
-    font-size: 0.875rem; /* 14px */
-    line-height: 1.25rem; /* 20px */
+    font-size: 0.875rem;
+    line-height: 1.25rem;
     margin-top: 1px;
     margin-bottom: 3px;
 }

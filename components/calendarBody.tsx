@@ -11,6 +11,10 @@ export const CalendarBody = (props: {
     mySchedules: MY_SCHEDULE[];
     addCalendarPlan: (clickedDate: Date) => void;
     weekCalendar: Date[];
+    setIsEditModal: any;
+    setEditPlanTitle: any;
+    setEditPlanId: any;
+    setClickedDate: any;
 }) => {
     const {
         monthCalendar,
@@ -18,6 +22,10 @@ export const CalendarBody = (props: {
         setCalendarPlanModal,
         mySchedules,
         addCalendarPlan,
+        setIsEditModal,
+        setEditPlanTitle,
+        setEditPlanId,
+        setClickedDate,
     } = props;
     const { switchDisplay } = useContext(GlobalContext);
     return (
@@ -35,6 +43,10 @@ export const CalendarBody = (props: {
                                     setCalendarPlanModal={setCalendarPlanModal}
                                     mySchedules={mySchedules}
                                     addCalendarPlan={addCalendarPlan}
+                                    setIsEditModal={setIsEditModal}
+                                    setEditPlanTitle={setEditPlanTitle}
+                                    setEditPlanId={setEditPlanId}
+                                    setClickedDate={setClickedDate}
                                 />
                             ))}
                         </React.Fragment>

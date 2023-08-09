@@ -4,49 +4,48 @@ import { Dispatch, SetStateAction } from "react";
 
 type PLAN_MODAL = {
     addCalendarPlan: (clickedDate: Date) => void;
-    planTitle: string;
-    setPlanTitle: Dispatch<SetStateAction<string>>;
-    isModal: boolean;
-    setIsModal: Dispatch<SetStateAction<boolean>>;
+    isEditModal: boolean;
+    setIsEditModal: Dispatch<SetStateAction<boolean>>;
     clickedDate: Date;
+    editPlanTitle: any;
+    setEditPlanTitle: any;
+    editCalendarPlan: any;
 };
 
-export const PlanModal = (props: PLAN_MODAL) => {
+export const EditPlanModal = (props: PLAN_MODAL) => {
     const {
-        addCalendarPlan,
-        planTitle,
-        setPlanTitle,
-        isModal,
-        setIsModal,
+        isEditModal,
+        setIsEditModal,
         clickedDate,
+        editPlanTitle,
+        setEditPlanTitle,
+        editCalendarPlan,
     } = props;
     return (
         <>
-            {isModal && (
+            {isEditModal && (
                 <div id={styles.overlay}>
                     <div id={styles.content}>
                         <div className={styles.title}>
                             <input
                                 type="text"
                                 name="title"
-                                placeholder="タイトルを追加"
-                                value={planTitle}
-                                onChange={(e) => setPlanTitle(e.target.value)}
+                                value={editPlanTitle}
+                                onChange={(e) =>
+                                    setEditPlanTitle(e.target.value)
+                                }
                             />
                         </div>
                         <div className={styles.dayInfo}>
                             日付: {format(clickedDate, "y年M月d日")}
                         </div>
                         <div className={styles.button}>
-                            <button
-                                onClick={() => addCalendarPlan(clickedDate)}
-                            >
-                                追加する
+                            <button onClick={() => editCalendarPlan()}>
+                                編集した内容で保存
                             </button>
                             <button
                                 onClick={() => {
-                                    setIsModal(false);
-                                    setPlanTitle("");
+                                    setIsEditModal(false);
                                 }}
                             >
                                 閉じる

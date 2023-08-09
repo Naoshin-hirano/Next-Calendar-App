@@ -13,6 +13,10 @@ export const Day = (props: {
     setCalendarPlanModal: (colIdx: number, rowIdx?: number) => void;
     mySchedules: MY_SCHEDULE[];
     addCalendarPlan: (clickedDate: Date) => void;
+    setIsEditModal: any;
+    setEditPlanTitle: any;
+    setEditPlanId: any;
+    setClickedDate: any;
 }) => {
     const [scheduleList, setScheduleList] = useState<MY_SCHEDULE[]>([]);
     const {
@@ -22,6 +26,10 @@ export const Day = (props: {
         setCalendarPlanModal,
         mySchedules,
         addCalendarPlan,
+        setIsEditModal,
+        setEditPlanTitle,
+        setEditPlanId,
+        setClickedDate,
     } = props;
     // 今日の日付を色付けする
     const getCurrentDayClass = () => {
@@ -56,7 +64,18 @@ export const Day = (props: {
             <div className={styles.schedulerContainer}>
                 {scheduleList &&
                     scheduleList.map((schedule, index) => (
-                        <div key={index} className={styles.scheduler}>
+                        <div
+                            onClick={(e) => {
+                                console.log("内側がクリックされました");
+                                e.stopPropagation();
+                                setIsEditModal(true);
+                                setEditPlanTitle(schedule.title);
+                                setEditPlanId(schedule.id);
+                                setClickedDate(schedule.date);
+                            }}
+                            key={index}
+                            className={styles.scheduler}
+                        >
                             {schedule.title}
                         </div>
                     ))}

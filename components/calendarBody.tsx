@@ -11,8 +11,6 @@ export const CalendarBody = (props: {
     mySchedules: MY_SCHEDULE[];
     addCalendarPlan: (clickedDate: Date) => void;
     weekCalendar: Date[];
-    setIsEditModal: any;
-    setEditPlanTitle: any;
     setEditPlanId: any;
     setClickedDate: any;
 }) => {
@@ -22,12 +20,11 @@ export const CalendarBody = (props: {
         setCalendarPlanModal,
         mySchedules,
         addCalendarPlan,
-        setIsEditModal,
-        setEditPlanTitle,
         setEditPlanId,
         setClickedDate,
     } = props;
-    const { switchDisplay } = useContext(GlobalContext);
+    const { switchDisplay, setIsEditModal, setEditPlanTitle } =
+        useContext(GlobalContext);
     return (
         <>
             {switchDisplay === "月" && (

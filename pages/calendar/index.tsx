@@ -2,10 +2,11 @@ import { CalendarHeader } from "@/components/calendarHeader";
 import { CalendarBody } from "@/components/calendarBody";
 import { getFuncWeek, getFunsMonth } from "@/util";
 import styles from "../../styles/Home.module.css";
-import { useState } from "react";
-import { PlanModal } from "@/components/common/planModal";
+import { useContext, useState } from "react";
+import { AddPlanModal } from "@/components/common/addPlanModal";
 import Layout from "@/components/layout";
 import { EditPlanModal } from "@/components/common/editPlanModal";
+import GlobalContext from "@/context/GlobalContext";
 
 export type MY_SCHEDULE = {
     id: Date;
@@ -16,12 +17,12 @@ export type MY_SCHEDULE = {
 export default function Page1() {
     const [targetDate, setTargetDate] = useState<Date>(new Date());
     const [isModal, setIsModal] = useState<boolean>(false);
-    const [isEditModal, setIsEditModal] = useState<boolean>(false);
     const [clickedDate, setClickedDate] = useState<Date>(new Date());
     const [planTitle, setPlanTitle] = useState("");
-    const [editPlanTitle, setEditPlanTitle] = useState("");
     const [mySchedules, setMySchedules] = useState<MY_SCHEDULE[]>([]);
     const [editPlanId, setEditPlanId] = useState();
+
+    const { setIsEditModal, editPlanTitle } = useContext(GlobalContext);
 
     let monthCalendar = getFunsMonth(targetDate);
     let weekCalendar = getFuncWeek(targetDate);
@@ -51,12 +52,13 @@ export default function Page1() {
     };
 
     const editCalendarPlan = () => {
-        mySchedules.map((plan) => {
+        const newSchedule = mySchedules.map((plan) => {
             if (plan.id === editPlanId) {
                 plan.title = editPlanTitle;
             }
             return plan;
         });
+        setMySchedules(newSchedule);
         setIsEditModal(false);
     };
 
@@ -73,12 +75,10 @@ export default function Page1() {
                     setCalendarPlanModal={setCalendarPlanModal}
                     mySchedules={mySchedules}
                     addCalendarPlan={addCalendarPlan}
-                    setIsEditModal={setIsEditModal}
-                    setEditPlanTitle={setEditPlanTitle}
                     setEditPlanId={setEditPlanId}
                     setClickedDate={setClickedDate}
                 />
-                <PlanModal
+                <AddPlanModal
                     isModal={isModal}
                     setIsModal={setIsModal}
                     clickedDate={clickedDate}
@@ -87,12 +87,9 @@ export default function Page1() {
                     setPlanTitle={setPlanTitle}
                 />
                 <EditPlanModal
-                    isEditModal={isEditModal}
-                    setIsEditModal={setIsEditModal}
                     clickedDate={clickedDate}
                     addCalendarPlan={addCalendarPlan}
                     editPlanTitle={editPlanTitle}
-                    setEditPlanTitle={setEditPlanTitle}
                     editCalendarPlan={editCalendarPlan}
                 />
             </div>

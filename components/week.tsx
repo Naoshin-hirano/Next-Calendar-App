@@ -9,18 +9,11 @@ export const Week = (props: {
     mySchedules: MY_SCHEDULE[];
     addCalendarPlan: (clickedDate: Date) => void;
 }) => {
-    const { week, setCalendarPlanModal, mySchedules, addCalendarPlan } = props;
+    const { week } = props;
     return (
         <div className={styles.weekBorder}>
             {week.map((day: Date, i: number) => (
-                <WeekDay
-                    key={i}
-                    day={day}
-                    colIdx={i}
-                    setCalendarPlanModal={setCalendarPlanModal}
-                    mySchedules={mySchedules}
-                    addCalendarPlan={addCalendarPlan}
-                />
+                <WeekDay key={i} day={day} colIdx={i} {...props} />
             ))}
         </div>
     );

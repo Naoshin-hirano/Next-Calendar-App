@@ -8,6 +8,8 @@ import { MY_SCHEDULE } from "./calendar";
 export default function App({ Component, pageProps }: AppProps) {
     const [switchDisplay, setSwitchDisplay] = useState<"月" | "週">("月");
     const [mySchedules, setMySchedules] = useState<MY_SCHEDULE[]>([]);
+    const [isEditModal, setIsEditModal] = useState<boolean>(false);
+    const [editPlanTitle, setEditPlanTitle] = useState("");
     return (
         <GlobalContext.Provider
             value={{
@@ -15,6 +17,10 @@ export default function App({ Component, pageProps }: AppProps) {
                 setSwitchDisplay,
                 mySchedules,
                 setMySchedules,
+                isEditModal,
+                setIsEditModal,
+                editPlanTitle,
+                setEditPlanTitle,
             }}
         >
             <Component {...pageProps} />

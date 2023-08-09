@@ -11,7 +11,7 @@ type PLAN_MODAL = {
     clickedDate: Date;
 };
 
-export const PlanModal = (props: PLAN_MODAL) => {
+export const AddPlanModal = (props: PLAN_MODAL) => {
     const {
         addCalendarPlan,
         planTitle,

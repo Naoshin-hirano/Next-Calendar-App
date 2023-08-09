@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { Dispatch, SetStateAction, useContext } from "react";
 import { Day } from "./day";
 import styles from "./month.module.css";
 import { MY_SCHEDULE } from "@/pages/calendar";
@@ -11,8 +11,8 @@ export const CalendarBody = (props: {
     mySchedules: MY_SCHEDULE[];
     addCalendarPlan: (clickedDate: Date) => void;
     weekCalendar: Date[];
-    setEditPlanId: any;
-    setClickedDate: any;
+    setEditPlanId: Dispatch<SetStateAction<Date>>;
+    setClickedDate: Dispatch<SetStateAction<Date>>;
 }) => {
     const {
         monthCalendar,
@@ -41,7 +41,6 @@ export const CalendarBody = (props: {
                                     mySchedules={mySchedules}
                                     addCalendarPlan={addCalendarPlan}
                                     setIsEditModal={setIsEditModal}
-                                    setEditPlanTitle={setEditPlanTitle}
                                     setEditPlanId={setEditPlanId}
                                     setClickedDate={setClickedDate}
                                 />

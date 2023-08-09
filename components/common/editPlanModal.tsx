@@ -6,14 +6,14 @@ import GlobalContext from "@/context/GlobalContext";
 type PLAN_MODAL = {
     addCalendarPlan: (clickedDate: Date) => void;
     clickedDate: Date;
-    editPlanTitle: any;
-    editCalendarPlan: any;
+    editCalendarPlan: () => void;
+    deleteCalendarPlan: () => void;
 };
 
 export const EditPlanModal = (props: PLAN_MODAL) => {
-    const { clickedDate, editPlanTitle, editCalendarPlan } = props;
+    const { clickedDate, editCalendarPlan, deleteCalendarPlan } = props;
 
-    const { isEditModal, setIsEditModal, setEditPlanTitle } =
+    const { isEditModal, setIsEditModal, setEditPlanTitle, editPlanTitle } =
         useContext(GlobalContext);
     return (
         <>
@@ -44,6 +44,11 @@ export const EditPlanModal = (props: PLAN_MODAL) => {
                             >
                                 閉じる
                             </button>
+                            <div className={styles.deleteBtn}>
+                                <button onClick={() => deleteCalendarPlan()}>
+                                    削除
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>

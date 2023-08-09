@@ -20,7 +20,7 @@ export default function Page1() {
     const [clickedDate, setClickedDate] = useState<Date>(new Date());
     const [planTitle, setPlanTitle] = useState("");
     const [mySchedules, setMySchedules] = useState<MY_SCHEDULE[]>([]);
-    const [editPlanId, setEditPlanId] = useState();
+    const [editPlanId, setEditPlanId] = useState<Date>(new Date());
 
     const { setIsEditModal, editPlanTitle } = useContext(GlobalContext);
 
@@ -62,6 +62,18 @@ export default function Page1() {
         setIsEditModal(false);
     };
 
+    const deleteCalendarPlan = () => {
+        const question = window.confirm("本当に削除してもよろしいでしょうか");
+        if (!question) {
+            return;
+        }
+        const newSchedule = mySchedules.filter(
+            (plan) => plan.id !== editPlanId
+        );
+        setMySchedules(newSchedule);
+        setIsEditModal(false);
+    };
+
     return (
         <Layout>
             <div className={styles.container}>
@@ -89,8 +101,8 @@ export default function Page1() {
                 <EditPlanModal
                     clickedDate={clickedDate}
                     addCalendarPlan={addCalendarPlan}
-                    editPlanTitle={editPlanTitle}
                     editCalendarPlan={editCalendarPlan}
+                    deleteCalendarPlan={deleteCalendarPlan}
                 />
             </div>
         </Layout>

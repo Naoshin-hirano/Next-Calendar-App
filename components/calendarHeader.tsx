@@ -11,14 +11,17 @@ type CALENDER_HEADER = {
     targetDate: Date;
 };
 
+type DISPLAY_TYPE = "月" | "週";
+
 export const CalendarHeader = ({
     setTargetDate,
     targetDate,
 }: CALENDER_HEADER) => {
     const { switchDisplay, setSwitchDisplay } = useContext(GlobalContext);
-    const dateArray: ("月" | "週")[] = ["月", "週"];
-    const handleChange = (e: any) => {
-        setSwitchDisplay(dateArray[e.target.value]);
+    const dateArray: DISPLAY_TYPE[] = ["月", "週"];
+    const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const displayValue = e.target.value as DISPLAY_TYPE;
+        setSwitchDisplay(displayValue);
     };
     return (
         <header className={styles.headerContainer}>

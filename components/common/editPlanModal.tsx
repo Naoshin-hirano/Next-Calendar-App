@@ -1,20 +1,29 @@
 import format from "date-fns/format";
 import styles from "./planModal.module.css";
-import { useContext } from "react";
-import GlobalContext from "@/context/GlobalContext";
+import { Dispatch, SetStateAction } from "react";
 
 type PLAN_MODAL = {
     addCalendarPlan: (clickedDate: Date) => void;
     clickedDate: Date;
     editCalendarPlan: () => void;
     deleteCalendarPlan: () => void;
+    editPlanTitle: string;
+    setEditPlanTitle: Dispatch<SetStateAction<string>>;
+    setIsEditModal: Dispatch<SetStateAction<boolean>>;
+    isEditModal: boolean;
 };
 
 export const EditPlanModal = (props: PLAN_MODAL) => {
-    const { clickedDate, editCalendarPlan, deleteCalendarPlan } = props;
+    const {
+        clickedDate,
+        editCalendarPlan,
+        deleteCalendarPlan,
+        editPlanTitle,
+        setEditPlanTitle,
+        setIsEditModal,
+        isEditModal,
+    } = props;
 
-    const { isEditModal, setIsEditModal, setEditPlanTitle, editPlanTitle } =
-        useContext(GlobalContext);
     return (
         <>
             {isEditModal && (

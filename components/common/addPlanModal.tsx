@@ -6,8 +6,8 @@ type PLAN_MODAL = {
     addCalendarPlan: (clickedDate: Date) => void;
     planTitle: string;
     setPlanTitle: Dispatch<SetStateAction<string>>;
-    isModal: boolean;
-    setIsModal: Dispatch<SetStateAction<boolean>>;
+    isAddModal: boolean;
+    setIsAddModal: Dispatch<SetStateAction<boolean>>;
     clickedDate: Date;
 };
 
@@ -16,13 +16,13 @@ export const AddPlanModal = (props: PLAN_MODAL) => {
         addCalendarPlan,
         planTitle,
         setPlanTitle,
-        isModal,
-        setIsModal,
+        isAddModal,
+        setIsAddModal,
         clickedDate,
     } = props;
     return (
         <>
-            {isModal && (
+            {isAddModal && (
                 <div id={styles.overlay}>
                     <div id={styles.content}>
                         <div className={styles.title}>
@@ -45,7 +45,7 @@ export const AddPlanModal = (props: PLAN_MODAL) => {
                             </button>
                             <button
                                 onClick={() => {
-                                    setIsModal(false);
+                                    setIsAddModal(false);
                                     setPlanTitle("");
                                 }}
                             >

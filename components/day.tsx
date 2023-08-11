@@ -3,15 +3,8 @@ import styles from "./day.module.css";
 import format from "date-fns/format";
 import getDate from "date-fns/getDate";
 import getDay from "date-fns/getDay";
-import {
-    Dispatch,
-    SetStateAction,
-    useContext,
-    useEffect,
-    useState,
-} from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { MY_SCHEDULE } from "@/pages/calendar";
-import GlobalContext from "@/context/GlobalContext";
 
 export const Day = (props: {
     day: Date;
@@ -23,6 +16,7 @@ export const Day = (props: {
     setIsEditModal: Dispatch<SetStateAction<boolean>>;
     setEditPlanId: Dispatch<SetStateAction<Date>>;
     setClickedDate: Dispatch<SetStateAction<Date>>;
+    editCalendarModal: (schedule: MY_SCHEDULE) => void;
 }) => {
     const [scheduleList, setScheduleList] = useState<MY_SCHEDULE[]>([]);
     const {
@@ -32,11 +26,8 @@ export const Day = (props: {
         setCalendarPlanModal,
         mySchedules,
         addCalendarPlan,
-        setIsEditModal,
-        setEditPlanId,
-        setClickedDate,
+        editCalendarModal,
     } = props;
-    const { setEditPlanTitle } = useContext(GlobalContext);
     // 今日の日付を色付けする
     const getCurrentDayClass = () => {
         return `${
@@ -74,10 +65,7 @@ export const Day = (props: {
                             onClick={(e) => {
                                 console.log("内側がクリックされました");
                                 e.stopPropagation();
-                                setIsEditModal(true);
-                                setEditPlanTitle(schedule.title);
-                                setEditPlanId(schedule.id);
-                                setClickedDate(schedule.date);
+                                editCalendarModal(schedule);
                             }}
                             key={index}
                             className={styles.scheduler}

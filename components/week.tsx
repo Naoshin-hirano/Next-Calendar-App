@@ -8,6 +8,7 @@ export const Week = (props: {
     setCalendarPlanModal: (colIdx: number, rowIdx?: number) => void;
     mySchedules: MY_SCHEDULE[];
     addCalendarPlan: (clickedDate: Date) => void;
+    editCalendarModal: (schedule: MY_SCHEDULE) => void;
 }) => {
     const { week } = props;
     return (

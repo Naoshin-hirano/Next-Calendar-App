@@ -12,10 +12,17 @@ export const WeekDay = (props: {
     setCalendarPlanModal: (colIdx: number, rowIdx?: number) => void;
     mySchedules: MY_SCHEDULE[];
     addCalendarPlan: (clickedDate: Date) => void;
+    editCalendarModal: (schedule: MY_SCHEDULE) => void;
 }) => {
     const [scheduleList, setScheduleList] = useState<MY_SCHEDULE[]>([]);
-    const { day, colIdx, setCalendarPlanModal, mySchedules, addCalendarPlan } =
-        props;
+    const {
+        day,
+        colIdx,
+        setCalendarPlanModal,
+        mySchedules,
+        addCalendarPlan,
+        editCalendarModal,
+    } = props;
     // 今日の日付を色付けする
     const getCurrentDayClass = () => {
         return `${
@@ -45,7 +52,15 @@ export const WeekDay = (props: {
             <div className={styles.schedulerContainer}>
                 {scheduleList &&
                     scheduleList.map((schedule, index) => (
-                        <div key={index} className={styles.scheduler}>
+                        <div
+                            onClick={(e) => {
+                                console.log("内側がクリックされました");
+                                e.stopPropagation();
+                                editCalendarModal(schedule);
+                            }}
+                            key={index}
+                            className={styles.scheduler}
+                        >
                             {schedule.title}
                         </div>
                     ))}

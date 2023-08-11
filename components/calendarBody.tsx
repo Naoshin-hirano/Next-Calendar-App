@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction, useContext } from "react";
 import { Day } from "./day";
 import styles from "./month.module.css";
-import { MY_SCHEDULE } from "@/pages/calendar";
+import { MY_SCHEDULE } from "@/pages";
 import { Week } from "./week";
 import GlobalContext from "@/context/GlobalContext";
 

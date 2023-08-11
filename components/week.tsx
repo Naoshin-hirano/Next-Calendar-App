@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./week.module.css";
-import { MY_SCHEDULE } from "@/pages/calendar";
+import { MY_SCHEDULE } from "@/pages";
 import { WeekDay } from "./weekDay";
 
 export const Week = (props: {

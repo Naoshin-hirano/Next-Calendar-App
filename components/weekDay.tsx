@@ -4,7 +4,7 @@ import format from "date-fns/format";
 import getDate from "date-fns/getDate";
 import getDay from "date-fns/getDay";
 import { useEffect, useState } from "react";
-import { MY_SCHEDULE } from "@/pages/calendar";
+import { MY_SCHEDULE } from "@/pages";
 
 export const WeekDay = (props: {
     day: Date;

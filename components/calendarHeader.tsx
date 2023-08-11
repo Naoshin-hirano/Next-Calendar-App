@@ -1,3 +1,4 @@
+import React, { ChangeEvent } from "react";
 import { addWeeks, subWeeks } from "date-fns";
 import styles from "./calendarHeader.module.css";
 import addMonths from "date-fns/addMonths";
@@ -19,7 +20,8 @@ export const CalendarHeader = ({
 }: CALENDER_HEADER) => {
     const { switchDisplay, setSwitchDisplay } = useContext(GlobalContext);
     const dateArray: DISPLAY_TYPE[] = ["月", "週"];
-    const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+
+    const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
         const displayValue = e.target.value as DISPLAY_TYPE;
         setSwitchDisplay(displayValue);
     };
@@ -84,7 +86,7 @@ export const CalendarHeader = ({
             <div className={styles.displaySwitch}>
                 <select onChange={(e) => handleChange(e)} name="displaySwitch">
                     {dateArray.map((date, key) => (
-                        <option key={key} value={key}>
+                        <option key={key} value={date}>
                             {date}
                         </option>
                     ))}
